@@ -1,215 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UiDux - Thank You for Trying Out</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        /* Custom CSS for effects and animations */
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        
-        .stars-bg {
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
-                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3), transparent),
-                radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.2), transparent);
-            animation: twinkle 3s ease-in-out infinite alternate;
-        }
-        
-        @keyframes twinkle {
-            0% { opacity: 0.3; }
-            100% { opacity: 0.8; }
-        }
-        
-        .gradient-text {
-            background: linear-gradient(to bottom, #ffffff 57.222%, #45a0a4 96.111%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .adjust-letter-spacing {
-            letter-spacing: -0.02em;
-        }
-        
-        .card-glow {
-            box-shadow: 0 0 20px rgba(120, 119, 198, 0.1);
-        }
-        
-        /* Platform logo styles */
-        .platform-logo {
-            width: 68px;
-            height: 67px;
-            border-radius: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .xd-logo {
-            background: #470137;
-        }
-        
-        .figma-logo {
-            background: white;
-        }
-        
-        .plugin-logo {
-            background: white;
-        }
-    </style>
-</head>
-<body class="bg-[#181935] text-white min-h-screen overflow-x-hidden">
-    <!-- Main Container -->
-    <main class="relative w-full min-h-screen">
-        <!-- Background Stars -->
-        <div class="absolute inset-0 stars-bg opacity-60"></div>
-        
-        <!-- Radial Background Gradient -->
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1588px] h-[781px] bg-gradient-radial from-[#7877C6] to-transparent rounded-full blur-3xl"></div>
-        </div>
-        
-        <!-- Content Container -->
-        <div class="relative z-10 container mx-auto px-4 py-16">
-            <!-- Platform Logos Section -->
-            <section class="flex justify-center items-center gap-4 mb-16" aria-label="Supported Platforms">
-                <!-- XD Logo -->
-                <div class="platform-logo xd-logo">
-                    <div class="w-8 h-6 flex items-center justify-center">
-                        <span class="text-[#FF61F6] text-xl font-bold">Xd</span>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>UiDux - Thank You for Trying Out</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet" />
+        <style>
+            /* Custom CSS for effects and animations */
+            body {
+                font-family: "Plus Jakarta Sans", sans-serif;
+            }
+
+            .stars-bg {
+                background-image: radial-gradient(
+                        2px 2px at 20px 30px,
+                        rgba(255, 255, 255, 0.3),
+                        transparent
+                    ),
+                    radial-gradient(
+                        2px 2px at 40px 70px,
+                        rgba(255, 255, 255, 0.2),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 90px 40px,
+                        rgba(255, 255, 255, 0.4),
+                        transparent
+                    ),
+                    radial-gradient(
+                        1px 1px at 130px 80px,
+                        rgba(255, 255, 255, 0.3),
+                        transparent
+                    ),
+                    radial-gradient(
+                        2px 2px at 160px 30px,
+                        rgba(255, 255, 255, 0.2),
+                        transparent
+                    );
+                animation: twinkle 3s ease-in-out infinite alternate;
+            }
+
+            @keyframes twinkle {
+                0% {
+                    opacity: 0.3;
+                }
+                100% {
+                    opacity: 0.8;
+                }
+            }
+
+            .gradient-text {
+                background: linear-gradient(
+                    to bottom,
+                    #ffffff 57.222%,
+                    #45a0a4 96.111%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .adjust-letter-spacing {
+                letter-spacing: -0.02em;
+            }
+
+            .card-glow {
+                box-shadow: 0 0 20px rgba(120, 119, 198, 0.1);
+            }
+
+            /* Platform logo styles */
+            .platform-logo {
+                width: 68px;
+                height: 67px;
+                border-radius: 11px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .xd-logo {
+                background: #470137;
+            }
+
+            .figma-logo {
+                background: white;
+            }
+
+            .plugin-logo {
+                background: white;
+            }
+        </style>
+    </head>
+    <body class="bg-[#181935] text-white min-h-screen overflow-x-hidden">
+        <!-- Main Container -->
+        <main class="relative w-full min-h-screen">
+            <!-- Background Stars -->
+            <div class="absolute inset-0 stars-bg opacity-60"></div>
+
+            <!-- Radial Background Gradient -->
+            <div class="absolute inset-0 opacity-20">
+                <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1588px] h-[781px] bg-gradient-radial from-[#7877C6] to-transparent rounded-full blur-3xl"></div>
+            </div>
+
+            <!-- Content Container -->
+            <div class="relative z-10 container mx-auto px-4 py-16">
+                <!-- Platform Logos Section -->
+                <section
+                    class="flex justify-center items-center gap-4 mb-16"
+                    aria-label="Supported Platforms">
+                    <!-- XD Logo -->
+                    <div class="platform-logo xd-logo">
+                        <div class="w-8 h-6 flex items-center justify-center">
+                            <span class="text-[#FF61F6] text-xl font-bold"
+                                >Xd</span
+                            >
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Figma Logo -->
-                <div class="platform-logo figma-logo">
-                    <div class="w-6 h-8 relative">
-                        <!-- Simplified Figma logo representation -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-[#0ACF83] via-[#A259FF] via-[#F24E1E] via-[#FF7262] to-[#1ABCFE] rounded-sm"></div>
+
+                    <!-- Figma Logo -->
+                    <div class="platform-logo figma-logo">
+                        <img
+                            src="public/img.svg"
+                            alt="Figma Logo"
+                            style="
+                                width: 24px;
+                                height: 32px;
+                                display: block;
+                                margin: auto;
+                            " />
                     </div>
-                </div>
-                
-                <!-- Figma Plugin -->
-                <div class="platform-logo plugin-logo flex-col items-start px-3">
-                    <div class="w-6 h-8 mb-1 bg-gradient-to-br from-[#0ACF83] via-[#A259FF] via-[#F24E1E] via-[#FF7262] to-[#1ABCFE] rounded-sm"></div>
-                    <span class="text-black text-xs font-extrabold">Figma Plugin</span>
-                </div>
-            </section>
-            
-            <!-- Main Heading -->
-            <header class="text-center mb-16">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 adjust-letter-spacing max-w-4xl mx-auto leading-tight">
-                    Thank You For Trying Out:
-                </h1>
-                <div class="text-6xl md:text-7xl lg:text-8xl font-extrabold gradient-text adjust-letter-spacing uppercase mb-8">
-                    UIDUX.COM
-                </div>
-                <p class="text-2xl md:text-3xl lg:text-4xl font-medium text-[#eaecf0] mb-4">
-                    Get Unlimited Downloads with Small Monthly Fee
-                </p>
-                <p class="text-2xl md:text-3xl lg:text-4xl font-medium text-[#eaecf0]">
-                    starting at $9.99/month or $4.99/month with annual plan
-                </p>
-            </header>
-            
-            <!-- Usage Rights Section -->
-            <section class="text-center mb-16">
-                <p class="text-xl md:text-2xl lg:text-3xl font-medium text-[#eaecf0] max-w-4xl mx-auto leading-relaxed">
-                    You can use the resources to create themes for figma, wordpress or any other cms that you can resell. No attribution required
-                </p>
-            </section>
-            
-            <!-- Feature Cards Grid -->
-            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" aria-label="Platform Features">
-                <!-- 400+ Dashboards -->
-                <article class="bg-[#1e1f3d] border border-[#3c3c83] rounded-3xl p-8 text-center card-glow">
-                    <h2 class="text-2xl md:text-3xl font-medium text-[#eaecf0]">
-                        400+ Dashboards
-                    </h2>
-                </article>
-                
-                <!-- 1000+ Homepages -->
-                <article class="bg-[#1e1f3d] border border-[#3c3c83] rounded-3xl p-8 text-center card-glow">
-                    <h2 class="text-2xl md:text-3xl font-medium text-[#eaecf0]">
-                        1000+ Homepages
-                    </h2>
-                </article>
-                
-                <!-- 500+ Shopify Stores -->
-                <article class="bg-[#1e1f3d] border border-[#3c3c83] rounded-3xl p-8 text-center card-glow">
-                    <h2 class="text-2xl md:text-3xl font-medium text-[#eaecf0]">
-                        500+ <br> Shopify Stores
-                    </h2>
-                </article>
-            </section>
-            
-            <!-- Weekly Updates Section -->
-            <section class="mb-16">
-                <article class="bg-[#1e1f3d] border border-[#3c3c83] rounded-3xl p-8 text-center card-glow max-w-4xl mx-auto">
-                    <h2 class="text-2xl md:text-3xl font-medium text-[#eaecf0]">
-                        At least 10 New Designs Added Every Week
-                    </h2>
-                </article>
-            </section>
-            
-            <!-- Pricing Section -->
-            <section class="text-center mb-16" aria-label="Pricing Information">
-                <h2 class="text-2xl md:text-3xl font-medium text-[#eaecf0] mb-8">
-                    Get All These With Just One Simple Monthly Price
-                </h2>
-                <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
-                    <div class="text-3xl md:text-4xl font-medium text-[#eaecf0]">
-                        $9.99/month
+                    <img
+                        src="public/img2.svg"
+                        alt="Figma Plugin Logo"
+                        style="
+                            width: 190px;
+                            height: 100px;
+                            display: block;
+                        " />
+                </section>
+
+                <!-- Main Heading -->
+                <header class="text-center mb-16">
+                    <h1
+                        class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 adjust-letter-spacing max-w-4xl mx-auto leading-tight">
+                        Thank You For Trying Out:
+                    </h1>
+                    <div
+                        class="text-6xl md:text-7xl lg:text-8xl font-extrabold gradient-text adjust-letter-spacing uppercase mb-8">
+                        UIDUX.COM
                     </div>
-                    <div class="text-3xl md:text-4xl font-medium text-[#eaecf0]">
-                        $4.99/month with annual plan
+                    <p
+                        class="text-2xl md:text-3xl lg:text-4xl font-medium text-[#eaecf0] mb-4">
+                        Get Unlimited Downloads with Small Monthly Fee
+                    </p>
+                    <p
+                        class="text-2xl md:text-3xl lg:text-4xl font-medium text-[#eaecf0]">
+                        starting at $9.99/month or $4.99/month with annual plan
+                    </p>
+                </header>
+
+                <!-- Usage Rights Section -->
+                <section class="text-center mb-16">
+                    <p
+                        class="text-xl md:text-2xl lg:text-3xl font-medium text-[#eaecf0] max-w-4xl mx-auto leading-relaxed">
+                        You can use the resources to create themes for figma,
+                        wordpress or any other cms that you can resell. No
+                        attribution required
+                    </p>
+                </section>
+
+                <!-- Feature Cards Grid -->
+                <section
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"
+                    aria-label="Platform Features">
+                    <!-- 400+ Dashboards -->
+                    <article
+                        class="bg-[#1e1f3d] border border-[#3c3c83] rounded-3xl p-8 text-center card-glow">
+                        <h2
+                            class="text-2xl md:text-3xl font-medium text-[#eaecf0]">
+                            400+ Dashboards
+                        </h2>
+                    </article>
+
+                    <!-- 1000+ Homepages -->
+                    <article
+                        class="bg-[#1e1f3d] border border-[#3c3c83] rounded-3xl p-8 text-center card-glow">
+                        <h2
+                            class="text-2xl md:text-3xl font-medium text-[#eaecf0]">
+                            1000+ Homepages
+                        </h2>
+                    </article>
+
+                    <!-- 500+ Shopify Stores -->
+                    <article
+                        class="bg-[#1e1f3d] border border-[#3c3c83] rounded-3xl p-8 text-center card-glow">
+                        <h2
+                            class="text-2xl md:text-3xl font-medium text-[#eaecf0]">
+                            500+ <br />
+                            Shopify Stores
+                        </h2>
+                    </article>
+                </section>
+
+                <!-- Weekly Updates Section -->
+                <section class="mb-16">
+                    <article
+                        class="bg-[#1e1f3d] border border-[#3c3c83] rounded-3xl p-8 text-center card-glow max-w-4xl mx-auto">
+                        <h2
+                            class="text-2xl md:text-3xl font-medium text-[#eaecf0]">
+                            At least 10 New Designs Added Every Week
+                        </h2>
+                    </article>
+                </section>
+
+                <!-- Pricing Section -->
+                <section
+                    class="text-center mb-16"
+                    aria-label="Pricing Information">
+                    <h2
+                        class="text-2xl md:text-3xl font-medium text-[#eaecf0] mb-8">
+                        Get All These With Just One Simple Monthly Price
+                    </h2>
+                    <div
+                        class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
+                        <div
+                            class="text-3xl md:text-4xl font-medium text-[#eaecf0]">
+                            $9.99/month
+                        </div>
+                        <div
+                            class="text-3xl md:text-4xl font-medium text-[#eaecf0]">
+                            $4.99/month with annual plan
+                        </div>
                     </div>
-                </div>
-            </section>
-            
-            <!-- Final Branding -->
-            <footer class="text-center">
-                <div class="text-6xl md:text-7xl lg:text-8xl font-extrabold gradient-text adjust-letter-spacing uppercase">
-                    UIDUX.COM
-                </div>
-            </footer>
-        </div>
-        
-        <!-- Decorative Star Element -->
-        <div class="absolute bottom-20 right-20 w-4 h-4 opacity-80 hidden lg:block">
-            <svg viewBox="0 0 48 48" fill="none" class="w-full h-full drop-shadow-2xl">
-                <path d="M24 15L24.4532 17.7516C24.8586 20.2126 26.7874 22.1414 29.2484 22.5468L32 23L29.2484 23.4532C26.7874 23.8586 24.8586 25.7874 24.4532 28.2484L24 31L23.5468 28.2484C23.1414 25.7874 21.2125 23.8586 18.7516 23.4532L16 23L18.7516 22.5468C21.2126 22.1414 23.1414 20.2125 23.5468 17.7516L24 15Z" fill="white"/>
-            </svg>
-        </div>
-    </main>
-    
-    <script>
-        // Add responsive behavior and smooth animations
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add fade-in animation to cards
-            const cards = document.querySelectorAll('article');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
+                </section>
+
+                <!-- Final Branding -->
+                <footer class="text-center">
+                    <div
+                        class="text-6xl md:text-7xl lg:text-8xl font-extrabold gradient-text adjust-letter-spacing uppercase">
+                        UIDUX.COM
+                    </div>
+                </footer>
+            </div>
+
+            <!-- Decorative Star Element -->
+            <div
+                class="absolute bottom-20 right-20 w-4 h-4 opacity-80 hidden lg:block">
+                <svg
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    class="w-full h-full drop-shadow-2xl">
+                    <path
+                        d="M24 15L24.4532 17.7516C24.8586 20.2126 26.7874 22.1414 29.2484 22.5468L32 23L29.2484 23.4532C26.7874 23.8586 24.8586 25.7874 24.4532 28.2484L24 31L23.5468 28.2484C23.1414 25.7874 21.2125 23.8586 18.7516 23.4532L16 23L18.7516 22.5468C21.2126 22.1414 23.1414 20.2125 23.5468 17.7516L24 15Z"
+                        fill="white" />
+                </svg>
+            </div>
+        </main>
+
+        <script>
+            // Add responsive behavior and smooth animations
+            document.addEventListener("DOMContentLoaded", function () {
+                // Add fade-in animation to cards
+                const cards = document.querySelectorAll("article");
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.style.opacity = "1";
+                                entry.target.style.transform = "translateY(0)";
+                            }
+                        });
+                    },
+                    { threshold: 0.1 }
+                );
+
+                cards.forEach((card) => {
+                    card.style.opacity = "0";
+                    card.style.transform = "translateY(20px)";
+                    card.style.transition =
+                        "opacity 0.6s ease-out, transform 0.6s ease-out";
+                    observer.observe(card);
                 });
-            }, { threshold: 0.1 });
-            
-            cards.forEach((card) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-                observer.observe(card);
             });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
