@@ -1,1124 +1,1072 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jadoo - Travel Agency</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Volkhov:wght@700&family=Open+Sans:wght@400;600&family=Montserrat:wght@400&family=Roboto:wght@400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#181E4B",
-              textClr: "#5E6282",
-              blackColor: "#080809",
-              grayColor: "#E5E5E5",
-              secondary: "#6246E5",
-              whiteColor: "#FFF",
-              textColor: "#39425D",
-              borderColor: "#F7F7F7",
-              circle: "#F5F5F5",
-              text2: "#84829A",
-              purple: "#8A79DF",
-              headingColor: "#1E1D4C",
-              orangeGrad: "#FF946D",
-              orangeGradEnd: "#FF7D68",
-            },
-            fontFamily: {
-              poppins: ["Poppins", "sans-serif"],
-              volkhov: ["Volkhov", "serif"],
-              opensans: ["Open Sans", "sans-serif"],
-              montserrat: ["Montserrat", "sans-serif"],
-              roboto: ["Roboto", "sans-serif"],
-            },
-            backgroundImage: {
-              "orange-gradient":
-                "linear-gradient(180deg, #FF946D 0%, #FF7D68 100%)",
-            },
-            spacing: {
-              18: "4.5rem",
-              88: "22rem",
-              128: "32rem",
-            },
-          },
-        },
-      };
-    </script>
-    <style>
-      /* Custom styles for better spacing and overlapping fixes */
-      .section-spacing {
-        padding-top: 5rem;
-        padding-bottom: 5rem;
-      }
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Jadoo — Travel Agency Landing Page</title>
+        <!-- Tailwind CSS (CDN) -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Volkhov:wght@700&display=swap"
+            rel="stylesheet" />
+        <style>
+            :root {
+                --brand: #f1a501;
+                --accent: #df6951;
+                --ink: #181e4b;
+                --muted: #5e6282;
+            }
+            html {
+                scroll-behavior: smooth;
+            }
+            body {
+                font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto,
+                    Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            }
+            .display {
+                font-family: Volkhov, Georgia, serif;
+            }
+            .underline-swoosh {
+                position: relative;
+            }
+            .underline-swoosh:after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -0.5rem;
+                width: 260px;
+                height: 10px;
+                background: radial-gradient(
+                    40% 100% at 50% 50%,
+                    var(--accent) 0%,
+                    transparent 70%
+                );
+                filter: blur(4px);
+                opacity: 0.8;
+            }
+            .soft-shadow {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            }
+            .logo-dot {
+                width: 12px;
+                height: 12px;
+                background: var(--brand);
+                border-radius: 3px;
+                transform: rotate(15deg);
+                display: inline-block;
+                margin-right: 6px;
+            }
+            .badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.25rem 0.6rem;
+                border-radius: 9999px;
+                font-size: 0.75rem;
+                background: #fff;
+                color: #39425d;
+                border: 1px solid #e5e7eb;
+            }
+            .bg-decore {
+                background: radial-gradient(
+                    600px 300px at 85% -50%,
+                    #fff1da 10%,
+                    transparent 60%
+                );
+            }
+            /* Subtle float animation for hero image */
+            @keyframes floatSlow {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-6px);
+                }
+            }
+            .float-slow {
+                animation: floatSlow 8s ease-in-out infinite;
+            }
 
-      .card-hover {
-        transition: all 0.3s ease;
-      }
+            /* Reveal on scroll */
+            .reveal {
+                opacity: 0;
+                transform: translateY(16px);
+                transition: all 700ms cubic-bezier(0.2, 0.65, 0.3, 1);
+            }
+            .reveal.reveal-in {
+                opacity: 1;
+                transform: none;
+            }
 
-      .card-hover:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-      }
-
-      .text-no-wrap {
-        white-space: nowrap;
-      }
-
-      .gradient-text {
-        background: linear-gradient(135deg, #6246e5, #8a79df);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .floating-animation {
-        animation: float 3s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      .service-card {
-        min-height: 280px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .testimonial-card {
-        min-height: 200px;
-      }
-
-      .destination-card {
-        transition: all 0.3s ease;
-        height: 100%;
-      }
-
-      .destination-card:hover {
-        transform: translateY(-8px);
-      }
-
-      /* Fix for mobile responsiveness */
-      @media (max-width: 768px) {
-        .hero-title {
-          font-size: 2.5rem;
-          line-height: 1.2;
-        }
-
-        .section-title {
-          font-size: 2rem;
-          line-height: 1.3;
-        }
-      }
-    </style>
-  </head>
-  <body class="bg-white font-poppins overflow-x-hidden">
-    <!-- Hero Section -->
-    <div class="relative min-h-screen bg-white">
-      <!-- Background Image -->
-      <img
-        src="https://api.builder.io/api/v1/image/assets/TEMP/61db5e3d6b5d504bfa80ee858584e809d2bc5de0?width=3845"
-        alt="Hero Background"
-        class="absolute -left-80 -top-32 w-[1922px] h-[1018px] object-cover z-0 opacity-90"
-      />
-
-      <!-- Navigation -->
-      <nav
-        class="relative z-10 flex justify-between items-center px-6 lg:px-32 py-6"
-      >
-        <div class="text-primary text-4xl font-poppins font-normal">Jadoo.</div>
-        <div
-          class="hidden lg:flex space-x-8 text-blackColor font-poppins text-base"
-        >
-          <a
-            href="#"
-            class="hover:text-secondary transition-colors duration-200"
-            >Destinations</a
-          >
-          <a
-            href="#"
-            class="hover:text-secondary transition-colors duration-200"
-            >Hotels</a
-          >
-          <a
-            href="#"
-            class="hover:text-secondary transition-colors duration-200"
-            >Flights</a
-          >
-          <a
-            href="#"
-            class="hover:text-secondary transition-colors duration-200"
-            >Bookings</a
-          >
-        </div>
-        <div class="hidden lg:flex items-center space-x-6">
-          <button
-            class="text-blackColor hover:text-secondary transition-colors duration-200"
-          >
-            Login
-          </button>
-          <button
-            class="bg-white border border-blackColor px-6 py-2 rounded-md hover:bg-secondary hover:text-white hover:border-secondary transition-all duration-200"
-          >
-            Sign up
-          </button>
-          <select
-            class="bg-transparent text-blackColor border-none outline-none"
-          >
-            <option>EN</option>
-          </select>
-        </div>
-      </nav>
-
-      <!-- Hero Content -->
-      <div class="relative z-10 px-6 lg:px-32 mt-12 lg:mt-20 pb-20">
-        <div class="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
-          <div class="space-y-8">
-            <div>
-              <p
-                class="text-orangeGrad text-lg font-bold uppercase tracking-wider mb-4"
-              >
-                Best Destinations Around The World
-              </p>
-              <h1
-                class="hero-title text-5xl lg:text-6xl xl:text-7xl font-volkhov font-bold text-primary leading-tight mb-6"
-              >
-                Travel, <span class="gradient-text">enjoy</span><br />
-                and live a new<br />
-                and full life
-              </h1>
-            </div>
-            <p class="text-textClr text-lg leading-8 max-w-lg">
-              Built Wicket longer admire do barton vanity itself do in it.
-              Preferred to sportsmen it engrossed listening. Park gate sell they
-              west hard for the.
-            </p>
-            <div
-              class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6"
-            >
-              <button
-                class="bg-orange-gradient text-white px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              >
-                Find out more
-              </button>
-              <button
-                class="flex items-center space-x-3 text-textClr hover:text-secondary transition-colors duration-200"
-              >
+            /* Respect reduced motion */
+            @media (prefers-reduced-motion: reduce) {
+                html {
+                    scroll-behavior: auto;
+                }
+                .reveal {
+                    opacity: 1;
+                    transform: none;
+                    transition: none;
+                }
+                .float-slow {
+                    animation: none;
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-white text-slate-900">
+        <div class="min-h-screen bg-white">
+            <!-- Header -->
+            <header
+                class="sticky top-0 z-40 supports-[backdrop-filter]:backdrop-blur bg-white/70">
+                <nav
+                    class="mx-auto max-w-7xl px-4 md:px-8 lg:px-10 pt-5 pb-5 flex items-center justify-between">
+                    <a class="flex items-center gap-2" href="#">
+                        <span class="logo-dot"></span>
+                        <span class="text-2xl font-semibold tracking-tight"
+                            >Jadoo</span
+                        >
+                    </a>
+                    <div
+                        class="hidden lg:flex items-center gap-8 text-[#212832]">
+                        <a
+                            class="hover:text-[var(--brand)] transition-colors"
+                            href="#destinations"
+                            >Destinations</a
+                        >
+                        <a
+                            class="hover:text-[var(--brand)] transition-colors"
+                            href="#"
+                            >Hotels</a
+                        >
+                        <a
+                            class="hover:text-[var(--brand)] transition-colors"
+                            href="#"
+                            >Flights</a
+                        >
+                        <a
+                            class="hover:text-[var(--brand)] transition-colors"
+                            href="#book-trip"
+                            >Bookings</a
+                        >
+                    </div>
+                    <div class="hidden lg:flex items-center gap-4">
+                        <button
+                            class="text-[#212832] hover:text-[var(--brand)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-2 rounded">
+                            Login
+                        </button>
+                        <button
+                            class="px-4 py-2 border border-[#212832] rounded text-[#212832] hover:bg-[#212832] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-2">
+                            Sign up
+                        </button>
+                        <span class="text-[#212832]">EN</span>
+                    </div>
+                    <button
+                        id="menuBtn"
+                        aria-label="Open menu"
+                        aria-expanded="false"
+                        aria-controls="mobileMenu"
+                        class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-2">
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <line x1="3" y1="12" x2="21" y2="12" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <line x1="3" y1="18" x2="21" y2="18" />
+                        </svg>
+                    </button>
+                </nav>
+                <!-- Mobile menu -->
                 <div
-                  class="w-12 h-12 bg-orangeGradEnd rounded-full flex items-center justify-center shadow-lg"
-                >
-                  <svg class="w-4 h-4" fill="white" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
+                    id="mobileMenu"
+                    class="lg:hidden hidden border-t border-slate-100 bg-white/90 supports-[backdrop-filter]:backdrop-blur">
+                    <div
+                        class="mx-auto max-w-7xl px-4 md:px-8 lg:px-10 py-4 space-y-4">
+                        <a
+                            class="block text-[#212832] hover:text-[var(--brand)]"
+                            href="#destinations"
+                            >Destinations</a
+                        >
+                        <a
+                            class="block text-[#212832] hover:text-[var(--brand)]"
+                            href="#"
+                            >Hotels</a
+                        >
+                        <a
+                            class="block text-[#212832] hover:text-[var(--brand)]"
+                            href="#"
+                            >Flights</a
+                        >
+                        <a
+                            class="block text-[#212832] hover:text-[var(--brand)]"
+                            href="#book-trip"
+                            >Bookings</a
+                        >
+                        <div class="flex items-center gap-3 pt-2">
+                            <button
+                                class="px-4 py-2 border border-[#212832] rounded text-[#212832] hover:bg-[#212832] hover:text-white transition-colors">
+                                Sign up
+                            </button>
+                            <button class="text-[#212832]">Login</button>
+                        </div>
+                    </div>
                 </div>
-                <span class="font-medium">Play Demo</span>
-              </button>
-            </div>
-          </div>
-          <div class="relative">
-            <div class="floating-animation">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/fb81879d26d24e43c57f26a5d6f7aa6d0bf3d512?width=628"
-                alt="Traveler"
-                class="w-full max-w-lg mx-auto"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </header>
 
-    <!-- Services Section -->
-    <section
-      class="section-spacing px-6 lg:px-32 relative bg-gradient-to-b from-transparent to-blue-50/30"
-    >
-      <!-- Decorative Plus Pattern -->
-      <div
-        class="absolute top-8 right-8 lg:right-32 w-32 h-32 opacity-15 hidden lg:block"
-      >
-        <div class="grid grid-cols-5 gap-2">
-          <span class="text-orangeGradEnd text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-secondary text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-          <span class="text-grayColor text-lg">+</span>
-        </div>
-      </div>
+            <!-- Hero -->
+            <section
+                class="relative mx-auto max-w-7xl px-4 md:px-8 lg:px-10 py-12 lg:py-20 overflow-hidden bg-white">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <p
+                            class="text-[var(--accent)] uppercase tracking-wider">
+                            Best Destinations around the world
+                        </p>
+                        <h1
+                            class="display text-5xl lg:text-7xl font-bold text-[var(--ink)] leading-tight underline-swoosh">
+                            Travel, enjoy<br />and live a new<br />and full life
+                        </h1>
+                        <p
+                            class="text-[var(--muted)] text-lg leading-relaxed max-w-md">
+                            Built Wicket longer admire do barton vanity itself
+                            do in it. Preferred to sportsmen it engrossed
+                            listening. Park gate sell they west hard for the.
+                        </p>
+                        <div class="flex items-center gap-6">
+                            <a
+                                href="#destinations"
+                                class="px-6 py-4 bg-[var(--brand)] text-white rounded-lg shadow-lg hover:brightness-110 transition"
+                                >Find out more</a
+                            >
+                            <button class="flex items-center gap-4 group">
+                                <span
+                                    class="w-12 h-12 rounded-full bg-[var(--accent)] grid place-items-center shadow-lg group-hover:scale-105 transition">
+                                    <svg
+                                        class="text-white"
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path d="M8 5v14l11-7-11-7z" />
+                                    </svg>
+                                </span>
+                                <span class="text-[#686D77]">Play Demo</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative reveal">
+                        <!-- Hero Traveller Image (provided) -->
+                        <div class="relative w-full max-w-xl mx-auto">
+                            <img
+                                src="public/c5477c09-ccf7-4d2d-89fc-d51a9f68dc16.png"
+                                alt="Happy traveller sitting on luggage"
+                                class="block ml-auto w-[560px] md:w-[600px] lg:w-[660px] h-auto object-contain float-slow select-none"
+                                loading="eager" />
+                        </div>
+                        <!-- Floating planes -->
+                        <div class="absolute -top-4 right-0 opacity-30">
+                            <svg
+                                width="120"
+                                height="60"
+                                viewBox="0 0 129 70"
+                                fill="none">
+                                <path
+                                    d="M72.7 52.2c-1.5-.8-3.1-1.4-4.6-1.7-4-0.8-7 .1-6.7 2 .4 1.9 3.9 4.1 7.9 4.9 1.6.3 3.1.4 4.5.2.6-.1 1-.6.9-1.2l-.4-2.4c-.1-.6-.6-1.2-1.6-1.8z"
+                                    fill="#D5D6DB" />
+                            </svg>
+                        </div>
+                        <div
+                            class="absolute top-8 right-24 rotate-6 opacity-40">
+                            <svg
+                                width="90"
+                                height="42"
+                                viewBox="0 0 129 70"
+                                fill="none">
+                                <path
+                                    d="M75.63 25.34c-1.08-.57-2.2-.97-3.3-1.18-2.86-.57-5.02.05-4.82 1.39.2 1.34 2.69 2.91 5.55 3.49.94.19 1.9.22 2.86.06.41-.07.66-.41.6-.81l-.26-1.74c-.07-.44-.44-.91-.99-1.21z"
+                                    fill="#D5D6DB" />
+                                <path
+                                    d="M62.34 16.63c-.21-.18-.47-.31-.73-.36l-6.72-1.35c-.56-.11-.95.21-.88.67.01.11.05.22.11.33l9.55 16.92 22.42 4.5-23.75-19.71z"
+                                    fill="#029BC5" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-20">
-          <p
-            class="text-textClr text-lg font-semibold uppercase tracking-wide mb-4"
-          >
-            CATEGORY
-          </p>
-          <h2
-            class="section-title text-4xl lg:text-5xl font-volkhov font-bold text-headingColor"
-          >
-            We Offer Best Services
-          </h2>
-        </div>
+            <!-- Services -->
+            <section class="mx-auto max-w-7xl px-4 md:px-8 lg:px-10 py-20">
+                <div class="text-center mb-14">
+                    <p class="text-[var(--muted)] uppercase tracking-wider">
+                        Category
+                    </p>
+                    <h2
+                        class="display text-4xl lg:text-5xl font-bold text-[#14183E]">
+                        We Offer Best Services
+                    </h2>
+                </div>
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 reveal">
+                    <!-- Card 1 -->
+                    <article
+                        class="bg-white rounded-3xl p-8 soft-shadow text-center hover:shadow-xl transition">
+                        <div
+                            class="mx-auto mb-6 w-16 h-16 rounded-2xl grid place-items-center bg-[#FFF1DA]">
+                            <svg
+                                width="36"
+                                height="36"
+                                viewBox="0 0 24 24"
+                                fill="#407093">
+                                <path
+                                    d="M12 2a1 1 0 0 1 1 1v3.06a7 7 0 1 1-2 0V3a1 1 0 0 1 1-1z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-[#1E1D4C] mb-2">
+                            Calculated Weather
+                        </h3>
+                        <p class="text-[var(--muted)]">
+                            Built Wicket longer admire do barton vanity itself
+                            do in it.
+                        </p>
+                    </article>
+                    <!-- Card 2 (active) -->
+                    <article
+                        class="bg-white rounded-3xl p-8 soft-shadow text-center relative hover:shadow-xl transition">
+                        <div
+                            class="absolute -left-6 -bottom-6 w-20 h-20 bg-[var(--accent)] rounded-tl-[30px] rounded-br-[10px] -z-10"></div>
+                        <div
+                            class="mx-auto mb-6 w-16 h-16 rounded-2xl grid place-items-center bg-[#FFF1DA]">
+                            <svg
+                                width="40"
+                                height="24"
+                                viewBox="0 0 129 70"
+                                fill="none">
+                                <path
+                                    d="M72.7 52.2c-1.5-.8-3.1-1.4-4.6-1.7-4-.8-7 .1-6.7 2 .4 1.9 3.9 4.1 7.9 4.9 1.6.3 3.1.4 4.5.2.6-.1 1-.6.9-1.2l-.4-2.4c-.1-.6-.6-1.2-1.6-1.8z"
+                                    fill="#029BC5" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-[#1E1D4C] mb-2">
+                            Best Flights
+                        </h3>
+                        <p class="text-[var(--muted)]">
+                            Engrossed listening. Park gate sell they west hard
+                            for the.
+                        </p>
+                    </article>
+                    <!-- Card 3 -->
+                    <article
+                        class="bg-white rounded-3xl p-8 soft-shadow text-center hover:shadow-xl transition">
+                        <div
+                            class="mx-auto mb-6 w-16 h-16 rounded-2xl grid place-items-center bg-[#FFF1DA]">
+                            <svg
+                                width="28"
+                                height="28"
+                                viewBox="0 0 24 24"
+                                fill="#F59E0B">
+                                <path
+                                    d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm1 14h-2v-2h2Zm0-4h-2V6h2Z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-[#1E1D4C] mb-2">
+                            Local Events
+                        </h3>
+                        <p class="text-[var(--muted)]">
+                            Barton vanity itself do in it. Preferd to men it
+                            engrossed listening.
+                        </p>
+                    </article>
+                    <!-- Card 4 -->
+                    <article
+                        class="bg-white rounded-3xl p-8 soft-shadow text-center hover:shadow-xl transition">
+                        <div
+                            class="mx-auto mb-6 w-16 h-16 rounded-2xl grid place-items-center bg-[#FFF1DA]">
+                            <svg
+                                width="28"
+                                height="28"
+                                viewBox="0 0 24 24"
+                                fill="#94A3B8">
+                                <path
+                                    d="M6 3h12a1 1 0 0 1 1 1v11H5V4a1 1 0 0 1 1-1zm-1 14h14v2a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-[#1E1D4C] mb-2">
+                            Customization
+                        </h3>
+                        <p class="text-[var(--muted)]">
+                            We deliver outsourced aviation services for military
+                            customers.
+                        </p>
+                    </article>
+                </div>
+            </section>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          <!-- Calculated Weather -->
-          <div class="service-card text-center group p-6">
-            <div class="mb-8">
-              <div
-                class="w-20 h-20 bg-yellow-100 rounded-2xl mx-auto mb-8 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300"
-              >
-                <svg class="w-12 h-12" viewBox="0 0 100 100" fill="none">
-                  <path
-                    d="M50 20v-10M85 50h10M50 80v10M15 50H5M73.5 26.5l7-7M73.5 73.5l7 7M26.5 73.5l-7 7M26.5 26.5l-7-7"
-                    stroke="#407093"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                  />
-                  <circle cx="50" cy="50" r="20" fill="#4A80AA" />
-                </svg>
-              </div>
-            </div>
-            <h3
-              class="text-xl font-opensans font-semibold text-headingColor mb-4"
-            >
-              Calculated Weather
-            </h3>
-            <p class="text-textClr text-base leading-relaxed">
-              Built Wicket longer admire do barton vanity itself do in it.
-            </p>
-          </div>
+            <!-- Destinations -->
+            <section
+                id="destinations"
+                class="mx-auto max-w-7xl px-4 md:px-8 lg:px-10 py-20 scroll-mt-24">
+                <div class="text-center mb-14">
+                    <p class="text-[var(--muted)] uppercase tracking-wider">
+                        Top Selling
+                    </p>
+                    <h2
+                        class="display text-4xl lg:text-5xl font-bold text-[#14183E]">
+                        Top Destinations
+                    </h2>
+                </div>
+                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 reveal">
+                    <!-- Card -->
+                    <article
+                        class="bg-white rounded-3xl overflow-hidden soft-shadow hover:shadow-xl transition">
+                        <img
+                            class="w-full h-72 object-cover"
+                            alt="Santorini, Greece"
+                            src="public/062286a7-5ca6-4bd9-8eb5-52450b82a4c0.png"
+                            loading="lazy" />
+                        <div class="p-6">
+                            <div
+                                class="flex items-start justify-between mb-2 text-[var(--muted)]">
+                                <h3 class="text-lg">Santorini, Greece</h3>
+                                <span class="text-lg">$5,42k</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 text-[var(--muted)]">
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2L4.5 20.29 12 16l7.5 4.29L12 2z" />
+                                </svg>
+                                <span>10 Days Trip</span>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Card -->
+                    <article
+                        class="bg-white rounded-3xl overflow-hidden soft-shadow hover:shadow-xl transition">
+                        <img
+                            class="w-full h-72 object-cover"
+                            alt="Helsinki, Finland"
+                            src="public/4f41d9f0-fe96-491c-ae4f-83091a812a47.png"
+                            loading="lazy" />
+                        <div class="p-6">
+                            <div
+                                class="flex items-start justify-between mb-2 text-[var(--muted)]">
+                                <h3 class="text-lg">Helsinki, Finland</h3>
+                                <span class="text-lg">$4.2k</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 text-[var(--muted)]">
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2L4.5 20.29 12 16l7.5 4.29L12 2z" />
+                                </svg>
+                                <span>12 Days Trip</span>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- Card -->
+                    <article
+                        class="bg-white rounded-3xl overflow-hidden soft-shadow hover:shadow-xl transition">
+                        <img
+                            class="w-full h-72 object-cover"
+                            alt="Full Europe"
+                            src="public/ebed176e-e0a7-441a-ac65-0330ebcc5f29.png" />
+                        <div class="p-6">
+                            <div
+                                class="flex items-start justify-between mb-2 text-[var(--muted)]">
+                                <h3 class="text-lg">Full Europe</h3>
+                                <span class="text-lg">$15k</span>
+                            </div>
+                            <div
+                                class="flex items-center gap-2 text-[var(--muted)]">
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2L4.5 20.29 12 16l7.5 4.29L12 2z" />
+                                </svg>
+                                <span>28 Days Trip</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
 
-          <!-- Best Flights (Active) -->
-          <div class="service-card text-center group relative">
-            <div
-              class="bg-white rounded-3xl p-8 shadow-xl card-hover relative z-10"
-            >
-              <div
-                class="absolute -top-6 left-8 w-16 h-16 bg-orangeGradEnd rounded-lg shadow-md"
-              ></div>
-              <div class="mb-8 pt-8">
+            <!-- Book Trip -->
+            <section
+                id="book-trip"
+                class="mx-auto max-w-7xl px-4 md:px-8 lg:px-10 py-20 scroll-mt-24">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p
+                            class="text-[var(--muted)] uppercase tracking-wider mb-3">
+                            Easy and Fast
+                        </p>
+                        <h2
+                            class="display text-4xl lg:text-5xl font-bold text-[#14183E] mb-10">
+                            Book your next trip <br />
+                            in 3 easy steps
+                        </h2>
+                        <ul class="space-y-8">
+                            <li class="flex gap-4">
+                                <span
+                                    class="w-12 h-12 rounded-xl grid place-items-center bg-[#F0BB1F] text-white shrink-0"
+                                    ><svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M21 7l-9 10L3 11l1.5-1.5L12 14l7.5-9L21 7z" /></svg
+                                ></span>
+                                <div>
+                                    <h3
+                                        class="text-[var(--muted)] font-bold mb-1">
+                                        Choose Destination
+                                    </h3>
+                                    <p class="text-[var(--muted)]">
+                                        Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. Urna, tortor tempus.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span
+                                    class="w-12 h-12 rounded-xl grid place-items-center bg-[#F15A2B] text-white shrink-0"
+                                    ><svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M20 8H4V6h16v2zm0 2H4v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8zm-6 6h-4v-2h4v2z" /></svg
+                                ></span>
+                                <div>
+                                    <h3
+                                        class="text-[var(--muted)] font-bold mb-1">
+                                        Make Payment
+                                    </h3>
+                                    <p class="text-[var(--muted)]">
+                                        Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. Urna, tortor tempus.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span
+                                    class="w-12 h-12 rounded-xl grid place-items-center bg-[#006380] text-white shrink-0"
+                                    ><svg
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M7 8h10l-1 9H8L7 8zm3-5h4l1 3H9l1-3z" /></svg
+                                ></span>
+                                <div>
+                                    <h3
+                                        class="text-[var(--muted)] font-bold mb-1">
+                                        Reach Airport on Selected Date
+                                    </h3>
+                                    <p class="text-[var(--muted)]">
+                                        Lorem ipsum dolor sit amet, consectetur
+                                        adipiscing elit. Urna, tortor tempus.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="relative">
+                        <div
+                            class="bg-white rounded-3xl p-6 soft-shadow max-w-sm mx-auto">
+                            <img
+                                class="w-full h-40 object-cover rounded-2xl mb-4"
+                                alt="Trip to Greece (Santorini)"
+                                src="public/a26bf72f-1b12-4faf-a15c-d8a2358dec44.png"
+                                loading="lazy" />
+                            <h3 class="text-lg font-medium text-[#080809] mb-2">
+                                Trip To Greece
+                            </h3>
+                            <div
+                                class="flex justify-between text-sm text-[#84829A] mb-4">
+                                <span>14-29 June</span
+                                ><span>by Robbin joseph</span>
+                            </div>
+                            <div class="flex items-center gap-3 mb-4">
+                                <span
+                                    class="w-9 h-9 rounded-full grid place-items-center bg-slate-100 text-[#84829A]"
+                                    ><svg
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Z" /></svg
+                                ></span>
+                                <span
+                                    class="w-9 h-9 rounded-full grid place-items-center bg-slate-100 text-[#84829A]"
+                                    ><svg
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 2 4 8v12h16V8l-8-6z" /></svg
+                                ></span>
+                                <span
+                                    class="w-9 h-9 rounded-full grid place-items-center bg-slate-100 text-[#84829A]"
+                                    ><svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <path
+                                            d="M12 21.35 10.55 20.03C5.4 15.36 2 12.28 2 8.5 2 6 4 4 6.5 4 8.04 4 9.54 4.81 10.24 6.09 10.94 4.81 12.44 4 13.98 4 16.48 4 18.48 6 18.48 8.5c0 3.78-3.4 6.86-8.55 11.54z" /></svg
+                                ></span>
+                            </div>
+                            <div class="flex items-center text-[#84829A] gap-2">
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z" /></svg
+                                ><span>24 people going</span>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute right-0 top-20 bg-white rounded-2xl p-4 soft-shadow w-64">
+                            <div class="flex items-center gap-3 mb-3">
+                                <img
+                                    class="w-12 h-12 rounded-full object-cover"
+                                    alt="Trip avatar"
+                                    src="public/15b860b2-553a-4532-b501-948cc3445abe.png" />
+                                <div>
+                                    <span class="text-xs text-[#84829A]"
+                                        >Ongoing</span
+                                    >
+                                    <h4
+                                        class="font-medium text-[#080809] leading-tight">
+                                        Trip to rome
+                                    </h4>
+                                    <div class="text-xs text-[#84829A]">
+                                        <span class="text-[#8A79DF]">40%</span>
+                                        completed
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full h-1 bg-slate-200 rounded-full">
+                                <div
+                                    class="h-1 bg-[#8A79DF] rounded-full w-2/5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Testimonials -->
+            <section class="mx-auto max-w-7xl px-4 md:px-8 lg:px-10 py-20">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <p
+                            class="text-[var(--muted)] uppercase tracking-wider mb-3">
+                            Testimonials
+                        </p>
+                        <h2
+                            class="display text-4xl lg:text-5xl font-bold text-[#14183E] mb-8">
+                            What people say<br />about Us.
+                        </h2>
+                        <div class="flex gap-2">
+                            <span
+                                class="w-3 h-3 rounded-full bg-[#39425D]"></span>
+                            <span
+                                class="w-3 h-3 rounded-full bg-[#E5E5E5]"></span>
+                            <span
+                                class="w-3 h-3 rounded-full bg-[#E5E5E5]"></span>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div
+                            class="bg-white rounded-xl soft-shadow p-8 relative z-10">
+                            <p class="text-[#4E4E73] leading-relaxed mb-6">
+                                "On the Windows talking painted pasture yet its
+                                express parties use. Sure last upon he same as
+                                knew next. Of believed or diverted no."
+                            </p>
+                            <div class="flex items-center gap-3">
+                                <img
+                                    class="w-12 h-12 rounded-full object-cover"
+                                    alt="Mike Taylor"
+                                    src="public/e37ea958-11c3-4c8d-8ede-243cd3c6d86d.png" />
+                                <div>
+                                    <h4
+                                        class="font-semibold text-[var(--muted)]">
+                                        Mike taylor
+                                    </h4>
+                                    <p class="text-sm text-[var(--muted)]">
+                                        Lahore, Pakistan
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="absolute top-8 left-8 bg-white rounded-xl p-8 w-full border-2 border-[#F7F7F7]">
+                            <p class="text-[#4E4E73] leading-relaxed mb-4">
+                                "On the Windows talking painted pasture yet its
+                                express parties use. Sure last upon he same as
+                                knew next. Of believed or diverted no."
+                            </p>
+                            <div>
+                                <h4
+                                    class="font-semibold text-[var(--muted)] mb-1">
+                                    Chris Thomas
+                                </h4>
+                                <p class="text-sm text-[var(--muted)]">
+                                    CEO of Red Button
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Logos -->
+            <section class="mx-auto max-w-7xl px-4 md:px-8 lg:px-10 py-10">
                 <div
-                  class="w-20 h-20 bg-yellow-100 rounded-2xl mx-auto mb-8 flex items-center justify-center"
-                >
-                  <svg class="w-12 h-12" viewBox="0 0 100 100" fill="#029BC5">
-                    <path
-                      d="M90 45L20 70L10 50L25 40L15 25L30 20L50 30L85 15L90 45Z"
-                    />
-                  </svg>
+                    class="flex flex-wrap items-center justify-center gap-8 opacity-80">
+                    <div class="h-10 flex items-center">
+                        <span class="text-xl font-semibold tracking-wide"
+                            >Axon</span
+                        >
+                    </div>
+                    <div class="h-10 flex items-center">
+                        <span class="text-xl font-semibold tracking-wide"
+                            >Jetstar</span
+                        >
+                    </div>
+                    <div
+                        class="bg-white rounded-lg soft-shadow p-4 h-16 flex items-center">
+                        <span class="text-xl font-semibold tracking-wide"
+                            >Expedia</span
+                        >
+                    </div>
+                    <div class="h-10 flex items-center">
+                        <span class="text-xl font-semibold tracking-wide"
+                            >Qantas</span
+                        >
+                    </div>
+                    <div class="h-10 flex items-center">
+                        <span class="text-xl font-semibold tracking-wide"
+                            >Alitalia</span
+                        >
+                    </div>
                 </div>
-              </div>
-              <h3
-                class="text-xl font-opensans font-semibold text-headingColor mb-4"
-              >
-                Best Flights
-              </h3>
-              <p class="text-textClr text-base leading-relaxed">
-                Engrossed listening. Park gate sell they west hard for the.
-              </p>
-            </div>
-          </div>
+            </section>
 
-          <!-- Local Events -->
-          <div class="service-card text-center group p-6">
-            <div class="mb-8">
-              <div
-                class="w-20 h-20 bg-yellow-100 rounded-2xl mx-auto mb-8 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300"
-              >
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/a232eafa4af702ebd30269a5bd0160e865afc14a?width=80"
-                  alt="Events"
-                  class="w-10 h-16 rounded-b-full object-cover"
-                />
-              </div>
-            </div>
-            <h3
-              class="text-xl font-opensans font-semibold text-headingColor mb-4"
-            >
-              Local Events
-            </h3>
-            <p class="text-textClr text-base leading-relaxed">
-              Barton vanity itself do in it. Preferd to men it engrossed
-              listening.
-            </p>
-          </div>
-
-          <!-- Customization -->
-          <div class="service-card text-center group p-6">
-            <div class="mb-8">
-              <div
-                class="w-20 h-20 bg-yellow-100 rounded-2xl mx-auto mb-8 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300"
-              >
-                <svg class="w-12 h-12" viewBox="0 0 100 100" fill="#9FACBA">
-                  <circle cx="50" cy="50" r="30" />
-                  <circle cx="50" cy="50" r="20" fill="white" />
-                  <path
-                    d="M50 15v10M85 50h-10M50 85v-10M15 50h10"
-                    stroke="#9FACBA"
-                    stroke-width="3"
-                  />
-                </svg>
-              </div>
-            </div>
-            <h3
-              class="text-xl font-opensans font-semibold text-headingColor mb-4"
-            >
-              Customization
-            </h3>
-            <p class="text-textClr text-base leading-relaxed">
-              We deliver outsourced aviation services for military customers
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Destinations Section -->
-    <section class="section-spacing px-6 lg:px-32 bg-white">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-20">
-          <p
-            class="text-textClr text-lg font-semibold uppercase tracking-wide mb-4"
-          >
-            Top Selling
-          </p>
-          <h2
-            class="section-title text-4xl lg:text-5xl font-volkhov font-bold text-headingColor"
-          >
-            Top Destinations
-          </h2>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-          <!-- Rome, Italy -->
-          <div
-            class="destination-card bg-white rounded-3xl shadow-xl overflow-hidden card-hover"
-          >
-            <div class="relative">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/fb81879d26d24e43c57f26a5d6f7aa6d0bf3d512?width=628"
-                alt="Rome, Italy"
-                class="w-full h-72 object-cover"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
-              ></div>
-            </div>
-            <div class="p-6 space-y-4">
-              <div class="flex justify-between items-center">
-                <h3 class="text-lg font-poppins font-medium text-textClr">
-                  Rome, Italy
-                </h3>
-                <span class="text-lg font-poppins font-semibold text-textClr"
-                  >$5,42k</span
-                >
-              </div>
-              <div class="flex items-center text-textClr">
-                <svg
-                  class="w-5 h-5 mr-3 text-orangeGrad"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                  />
-                </svg>
-                <span class="text-base font-medium">10 Days Trip</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- London, UK -->
-          <div
-            class="destination-card bg-white rounded-3xl shadow-xl overflow-hidden card-hover"
-          >
-            <div class="relative">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/13f4deff858b23cd331b97c00216b66e89a398ba?width=628"
-                alt="London, UK"
-                class="w-full h-72 object-cover"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
-              ></div>
-            </div>
-            <div class="p-6 space-y-4">
-              <div class="flex justify-between items-center">
-                <h3 class="text-lg font-poppins font-medium text-textClr">
-                  London, UK
-                </h3>
-                <span class="text-lg font-poppins font-semibold text-textClr"
-                  >$4.2k</span
-                >
-              </div>
-              <div class="flex items-center text-textClr">
-                <svg
-                  class="w-5 h-5 mr-3 text-orangeGrad"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                  />
-                </svg>
-                <span class="text-base font-medium">12 Days Trip</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Full Europe -->
-          <div
-            class="destination-card bg-white rounded-3xl shadow-xl overflow-hidden card-hover"
-          >
-            <div class="relative">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/4cc59fcdc1d5b90adae2d6fe131a9b8e6636cb68?width=628"
-                alt="Full Europe"
-                class="w-full h-72 object-cover"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"
-              ></div>
-            </div>
-            <div class="p-6 space-y-4">
-              <div class="flex justify-between items-center">
-                <h3 class="text-lg font-poppins font-medium text-textClr">
-                  Full Europe
-                </h3>
-                <span class="text-lg font-poppins font-semibold text-textClr"
-                  >$15k</span
-                >
-              </div>
-              <div class="flex items-center text-textClr">
-                <svg
-                  class="w-5 h-5 mr-3 text-orangeGrad"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                  />
-                </svg>
-                <span class="text-base font-medium">28 Days Trip</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Book a Trip Section -->
-    <section
-      class="section-spacing px-6 lg:px-32 bg-gradient-to-r from-blue-50/50 to-purple-50/50"
-    >
-      <div class="max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-20 items-center">
-          <div class="space-y-8">
-            <div>
-              <p
-                class="text-textClr text-lg font-semibold uppercase tracking-wide mb-4"
-              >
-                Easy and Fast
-              </p>
-              <h2
-                class="section-title text-4xl lg:text-5xl font-volkhov font-bold text-headingColor leading-tight mb-8"
-              >
-                Book your next trip in 3 easy steps
-              </h2>
-            </div>
-
-            <div class="space-y-8">
-              <div class="flex items-start space-x-4">
+            <!-- Newsletter -->
+            <section class="mx-auto max-w-7xl px-4 md:px-8 lg:px-10 py-20">
                 <div
-                  class="w-12 h-12 bg-orange-gradient rounded-lg flex items-center justify-center flex-shrink-0"
-                >
-                  <span class="text-white font-bold text-lg">1</span>
+                    class="relative rounded-[20px] lg:rounded-tr-[129px] p-10 md:p-14 bg-gradient-to-br from-[#DFD7F9]/40 to-transparent overflow-hidden">
+                    <div class="absolute -right-10 -top-10 opacity-10">
+                        <svg
+                            width="260"
+                            height="260"
+                            viewBox="0 0 285 291"
+                            fill="none"
+                            stroke="#6246E5">
+                            <circle cx="142" cy="142" r="140" />
+                            <circle cx="152" cy="155" r="129" />
+                            <circle cx="158" cy="166" r="121" />
+                        </svg>
+                    </div>
+                    <div class="relative text-center">
+                        <h3
+                            class="text-2xl md:text-3xl font-semibold text-[var(--muted)] mb-8">
+                            Subscribe to get information, latest news and
+                            other<br class="hidden md:block" />
+                            interesting offers about Jadoo
+                        </h3>
+                        <div
+                            class="max-w-2xl mx-auto flex flex-col sm:flex-row items-center gap-4">
+                            <label class="relative w-full sm:flex-1">
+                                <span
+                                    class="absolute left-4 top-1/2 -translate-y-1/2 text-[#39425D]">
+                                    <svg
+                                        width="20"
+                                        height="18"
+                                        viewBox="0 0 21 18"
+                                        fill="none"
+                                        stroke="#39425D">
+                                        <rect
+                                            x="0.5"
+                                            y="0.5"
+                                            width="20"
+                                            height="17"
+                                            rx="4.5" />
+                                        <path
+                                            d="M4 6l5.4 4.05a1 1 0 0 0 1.2 0L16 6" />
+                                    </svg>
+                                </span>
+                                <input
+                                    class="w-full bg-white rounded-lg px-12 py-4 text-[#39425D] ring-1 ring-transparent focus:ring-orange-500 outline-none"
+                                    placeholder="Your email"
+                                    type="email" />
+                            </label>
+                            <button
+                                class="px-8 py-4 rounded-lg text-white bg-gradient-to-r from-[#FF946D] to-[#FF7D68] hover:brightness-110">
+                                Subscribe
+                            </button>
+                        </div>
+                    </div>
+                    <div class="absolute right-6 top-6">
+                        <div
+                            class="w-14 h-14 rounded-full grid place-items-center bg-gradient-to-br from-[#747DEF] to-[#5E3BE1] text-white shadow-lg">
+                            <svg
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path d="M2 21l21-9L2 3v7l15 2-15 2v7z" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                  <h3
-                    class="text-lg font-poppins font-semibold text-headingColor mb-2"
-                  >
-                    Choose Destination
-                  </h3>
-                  <p class="text-textClr">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Urna, tortor tempus.
-                  </p>
-                </div>
-              </div>
+            </section>
 
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-12 h-12 bg-orange-gradient rounded-lg flex items-center justify-center flex-shrink-0"
-                >
-                  <span class="text-white font-bold text-lg">2</span>
+            <!-- Footer -->
+            <footer class="bg-white border-t border-slate-100">
+                <div class="mx-auto max-w-7xl px-4 md:px-8 lg:px-10 py-16">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
+                        <div class="lg:col-span-2">
+                            <h3
+                                class="text-4xl font-medium text-[var(--ink)] mb-4">
+                                Jadoo.
+                            </h3>
+                            <p class="text-[var(--muted)]">
+                                Book your trip in minute, get full<br />Control
+                                for much longer.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-[#080809] mb-4">
+                                Company
+                            </h4>
+                            <ul class="space-y-3 text-[var(--muted)]">
+                                <li>
+                                    <a class="hover:text-[#080809]" href="#"
+                                        >About</a
+                                    >
+                                </li>
+                                <li>
+                                    <a class="hover:text-[#080809]" href="#"
+                                        >Careers</a
+                                    >
+                                </li>
+                                <li>
+                                    <a class="hover:text-[#080809]" href="#"
+                                        >Mobile</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-[#080809] mb-4">
+                                Contact
+                            </h4>
+                            <ul class="space-y-3 text-[var(--muted)]">
+                                <li>
+                                    <a class="hover:text-[#080809]" href="#"
+                                        >Help/FAQ</a
+                                    >
+                                </li>
+                                <li>
+                                    <a class="hover:text-[#080809]" href="#"
+                                        >Press</a
+                                    >
+                                </li>
+                                <li>
+                                    <a class="hover:text-[#080809]" href="#"
+                                        >Affiliates</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-bold text-[#080809] mb-4">
+                                More
+                            </h4>
+                            <ul class="space-y-3 text-[var(--muted)]">
+                                <li>
+                                    <a class="hover:text-[#080809]" href="#"
+                                        >Airlinefees</a
+                                    >
+                                </li>
+                                <li>
+                                    <a class="hover:text-[#080809]" href="#"
+                                        >Airline</a
+                                    >
+                                </li>
+                                <li>
+                                    <a class="hover:text-[#080809]" href="#"
+                                        >Low fare tips</a
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div
+                        class="flex flex-col lg:flex-row items-center justify-between gap-6 mt-12 pt-8 border-t border-slate-100">
+                        <div>
+                            <h5 class="text-[var(--muted)] mb-3">
+                                Discover our app
+                            </h5>
+                            <div class="flex gap-3">
+                                <span class="badge"
+                                    ><svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 20 20"
+                                        fill="#2196F3">
+                                        <path d="M2 2l9 8-9 8V2z" />
+                                        <path
+                                            d="M11 10l7-4v8l-7-4z"
+                                            fill="#4CAF50" />
+                                        <path
+                                            d="M2 2l9 8-2 1-7-9z"
+                                            fill="#F0BB1F" />
+                                        <path
+                                            d="M2 18l9-8-2-1-7 9z"
+                                            fill="#F15A2B" />
+                                    </svg>
+                                    Google Play</span
+                                >
+                                <span class="badge"
+                                    ><svg
+                                        width="14"
+                                        height="16"
+                                        viewBox="0 0 14 16"
+                                        fill="currentColor">
+                                        <path
+                                            d="M10.8 8.7c0-2.2 1.8-3.4 1.8-3.4-.9-1.3-2.3-1.5-2.8-1.5-1.2-.1-2.3.8-2.9.8-.6 0-1.5-.8-2.5-.8C2.3 3.8.8 5 .1 7 .4 7.1 1.9 8 2 10c.2 2.3 2 3.1 2 3.1.5.2 1.1.4 1.8.4.8 0 1.5-.3 2.1-.6.7-.3 1.2-.5 1.6-.5.5 0 1.2.2 1.9.5 0 0 1.4-.7 1.9-2.5-.1 0-2.5-.9-2.5-2.7z" />
+                                        <path
+                                            d="M9.7 2.8c.5-.6.8-1.4.7-2.2-.7.1-1.5.5-2 .9-.5.5-.9 1.2-.8 2 .8.1 1.6-.3 2.1-.7z" />
+                                    </svg>
+                                    App Store</span
+                                >
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <a
+                                class="w-10 h-10 rounded-full bg-white soft-shadow grid place-items-center"
+                                href="#"
+                                aria-label="Facebook"
+                                ><svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12" /></svg
+                            ></a>
+                            <a
+                                class="w-10 h-10 rounded-full bg-white soft-shadow grid place-items-center"
+                                href="#"
+                                aria-label="Twitter"
+                                ><svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M22 5.9c-.8.4-1.6.6-2.5.8.9-.6 1.6-1.4 1.9-2.5-.8.5-1.9.9-3 .9-1.8 0-3.3 1.4-3.3 3.2 0 .2 0 .4.1.6-2.7-.1-5.1-1.4-6.7-3.4-.3.4-.4.9-.4 1.4 0 1 .5 1.9 1.3 2.4-.6 0-1.2-.2-1.7-.5 0 1.6 1.2 2.9 2.7 3.2-.3.1-.6.1-.9.1-.2 0-.4 0-.6-.1.4 1.3 1.7 2.3 3.2 2.3-1.2 1-2.7 1.6-4.3 1.6H3c1.6 1 3.5 1.6 5.5 1.6 6.6 0 10.3-5.4 10.3-10.1v-.5c.7-.5 1.4-1.2 1.9-2z" /></svg
+                            ></a>
+                            <a
+                                class="w-10 h-10 rounded-full bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF] soft-shadow grid place-items-center text-white"
+                                href="#"
+                                aria-label="Instagram"
+                                ><svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h10zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" /></svg
+                            ></a>
+                        </div>
+                    </div>
+                    <p class="text-center text-[var(--muted)] mt-8">
+                        All rights reserved@jadoo.co
+                    </p>
                 </div>
-                <div>
-                  <h3
-                    class="text-lg font-poppins font-semibold text-headingColor mb-2"
-                  >
-                    Make Payment
-                  </h3>
-                  <p class="text-textClr">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Urna, tortor tempus.
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex items-start space-x-4">
-                <div
-                  class="w-12 h-12 bg-orange-gradient rounded-lg flex items-center justify-center flex-shrink-0"
-                >
-                  <span class="text-white font-bold text-lg">3</span>
-                </div>
-                <div>
-                  <h3
-                    class="text-lg font-poppins font-semibold text-headingColor mb-2"
-                  >
-                    Reach Airport on Selected Date
-                  </h3>
-                  <p class="text-textClr">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Urna, tortor tempus.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="relative">
-            <!-- Background Blur -->
-            <div
-              class="absolute -top-8 -right-8 w-88 h-88 bg-blue-200 rounded-full blur-3xl opacity-30"
-            ></div>
-
-            <!-- Main Card -->
-            <div
-              class="relative bg-white rounded-3xl p-6 shadow-2xl max-w-sm mx-auto lg:mx-0 z-10"
-            >
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/f506f30b839d1c193a0d715bdf73f6ed375e5caa?width=642"
-                alt="Greece"
-                class="w-full h-48 object-cover rounded-2xl mb-6"
-              />
-              <div class="space-y-4">
-                <h3 class="text-lg font-poppins font-semibold text-blackColor">
-                  Trip To Greece
-                </h3>
-                <p class="text-textClr text-sm">
-                  14-29 June | by Robbin joseph
-                </p>
-                <div class="flex items-center space-x-2">
-                  <svg
-                    class="w-4 h-4 text-text2"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M3 2.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5v-5z"
-                    />
-                  </svg>
-                  <span class="text-text2 text-sm">24 people going</span>
-                </div>
-
-                <div class="flex space-x-3 pt-2">
-                  <div
-                    class="w-9 h-9 bg-circle rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-4 h-4 text-text2"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0z"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    class="w-9 h-9 bg-circle rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-4 h-4 text-text2"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M2.5 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    class="w-9 h-9 bg-circle rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-4 h-4 text-text2"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        d="M8 2a.5.5 0 0 1 .485.379L9.43 6H12a.5.5 0 0 1 .485.621l-1.72 6A.5.5 0 0 1 10.28 13H5.72a.5.5 0 0 1-.485-.379L3.57 9H1a.5.5 0 0 1-.485-.621l1.72-6A.5.5 0 0 1 2.72 2H8z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Floating Card -->
-            <div
-              class="absolute -bottom-4 left-8 bg-white rounded-2xl p-4 shadow-xl max-w-xs"
-            >
-              <div class="flex items-center space-x-4">
-                <div
-                  class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden flex-shrink-0"
-                >
-                  <img
-                    src="https://api.builder.io/api/v1/image/assets/TEMP/3ffc71aadba8de12c8aee241a7edb8da3ed898fb?width=148"
-                    alt="User"
-                    class="w-full h-full object-cover"
-                  />
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h4 class="text-blackColor text-sm font-medium text-no-wrap">
-                    Trip to Rome
-                  </h4>
-                  <p class="text-text2 text-xs">
-                    <span class="text-purple font-medium">40%</span> completed
-                  </p>
-                  <div class="w-24 h-1 bg-circle rounded-full mt-2">
-                    <div class="w-10 h-1 bg-purple rounded-full"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Heart Icon -->
-            <div class="absolute top-2 right-2">
-              <div
-                class="w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center"
-              >
-                <svg
-                  class="w-4 h-4 text-red-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
+            </footer>
         </div>
-      </div>
-    </section>
+        <script>
+            // Mobile menu toggle
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+            if (menuBtn && mobileMenu) {
+                menuBtn.addEventListener("click", () => {
+                    const isOpen =
+                        mobileMenu.classList.toggle("hidden") === false;
+                    menuBtn.setAttribute("aria-expanded", String(isOpen));
+                });
+                // Close the menu when a link is clicked
+                mobileMenu.querySelectorAll("a").forEach((a) =>
+                    a.addEventListener("click", () => {
+                        mobileMenu.classList.add("hidden");
+                        menuBtn.setAttribute("aria-expanded", "false");
+                    })
+                );
+            }
 
-    <!-- Testimonials Section -->
-    <section class="section-spacing px-6 lg:px-32 bg-white">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-20 items-start">
-          <div class="space-y-8">
-            <div>
-              <p
-                class="text-textClr text-lg font-semibold uppercase tracking-wide mb-4"
-              >
-                Testimonials
-              </p>
-              <h2
-                class="section-title text-4xl lg:text-5xl font-volkhov font-bold text-headingColor leading-tight"
-              >
-                What people say about Us.
-              </h2>
-            </div>
+            // Header shadow on scroll
+            const header = document.querySelector("header");
+            const shadowToggle = () => {
+                if (!header) return;
+                if (window.scrollY > 8) header.classList.add("shadow-sm");
+                else header.classList.remove("shadow-sm");
+            };
+            window.addEventListener("scroll", shadowToggle, { passive: true });
+            shadowToggle();
 
-            <!-- Pagination Dots -->
-            <div class="flex space-x-3">
-              <div class="w-3 h-3 bg-textColor rounded-full"></div>
-              <div class="w-3 h-3 bg-grayColor rounded-full"></div>
-              <div class="w-3 h-3 bg-grayColor rounded-full"></div>
-            </div>
-          </div>
-
-          <div class="relative">
-            <!-- Main Testimonial -->
-            <div
-              class="testimonial-card bg-white rounded-2xl p-8 shadow-2xl relative z-10"
-            >
-              <div class="flex items-start space-x-4 mb-6">
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/3ffc71aadba8de12c8aee241a7edb8da3ed898fb?width=148"
-                  alt="Mike Taylor"
-                  class="w-16 h-16 rounded-full object-cover flex-shrink-0"
-                />
-                <div>
-                  <h4 class="text-lg font-semibold text-textClr">
-                    Mike Taylor
-                  </h4>
-                  <p class="text-textClr text-sm">Lahore, Pakistan</p>
-                </div>
-              </div>
-              <p class="text-textClr leading-8 italic">
-                "On the Windows talking painted pasture yet its express parties
-                use. Sure last upon he same as knew next. Of believed or
-                diverted no."
-              </p>
-            </div>
-
-            <!-- Background Testimonial -->
-            <div
-              class="absolute top-12 -left-8 bg-white rounded-2xl p-8 border-2 border-borderColor shadow-lg w-96 z-0"
-            >
-              <p class="text-textClr leading-8 mb-6 italic">
-                "On the Windows talking painted pasture yet its express parties
-                use. Sure last upon he same as knew next. Of believed or
-                diverted no."
-              </p>
-              <div>
-                <h4 class="text-lg font-semibold text-textClr">Chris Thomas</h4>
-                <p class="text-textClr text-sm">CEO of Red Button</p>
-              </div>
-            </div>
-
-            <!-- Navigation Arrows -->
-            <div class="absolute top-24 -right-12 flex flex-col space-y-4">
-              <button
-                class="w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md hover:shadow-lg transition-shadow duration-200"
-              >
-                <svg
-                  class="w-4 h-4 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 15l7-7 7 7"
-                  />
-                </svg>
-              </button>
-              <button
-                class="w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-md hover:shadow-lg transition-shadow duration-200"
-              >
-                <svg
-                  class="w-4 h-4 text-blackColor"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Logos Section -->
-    <section
-      class="py-16 px-6 lg:px-32 bg-gradient-to-r from-gray-50 to-blue-50/30"
-    >
-      <div class="max-w-7xl mx-auto">
-        <div
-          class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-60"
-        >
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/aafadedfd778e8292b5724ba50556a558ef2736a?width=260"
-            alt="Axon"
-            class="h-12 lg:h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300"
-          />
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/d3ecf76ce2ca111ee77c6a844744704c6ffecefa?width=346"
-            alt="Jetstar"
-            class="h-10 lg:h-12 object-contain grayscale hover:grayscale-0 transition-all duration-300"
-          />
-          <div
-            class="bg-white rounded-xl shadow-lg p-4 lg:p-6 hover:shadow-xl transition-shadow duration-300"
-          >
-            <img
-              src="https://api.builder.io/api/v1/image/assets/TEMP/fb93abe6c8f05e97446b52cb0b61bee0ba84c779?width=324"
-              alt="Expedia"
-              class="h-12 lg:h-16 object-contain"
-            />
-          </div>
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/cf502ed53717d36625ba0de70cdaa637d7d4fa63?width=324"
-            alt="Qantas"
-            class="h-6 lg:h-8 object-contain grayscale hover:grayscale-0 transition-all duration-300"
-          />
-          <img
-            src="https://api.builder.io/api/v1/image/assets/TEMP/6efd8c16e7e42aef6a50b10e73c5efb57a295dfc?width=188"
-            alt="Alitalia"
-            class="h-5 lg:h-6 object-contain grayscale hover:grayscale-0 transition-all duration-300"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- Subscribe Section -->
-    <section class="section-spacing px-6 lg:px-32 relative overflow-hidden">
-      <!-- Background Design -->
-      <div
-        class="absolute inset-0 bg-gradient-to-br from-purple-100/80 to-blue-100/80 rounded-3xl"
-      ></div>
-
-      <!-- Decorative Elements -->
-      <div
-        class="absolute top-8 right-8 lg:right-32 w-16 h-16 lg:w-20 lg:h-20 bg-secondary rounded-full opacity-20"
-      ></div>
-      <div class="absolute bottom-8 right-8">
-        <svg
-          class="w-12 h-12 lg:w-16 lg:h-16 text-secondary opacity-30"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-          />
-        </svg>
-      </div>
-
-      <div class="relative z-10 text-center max-w-4xl mx-auto">
-        <h2
-          class="text-2xl lg:text-3xl xl:text-4xl font-poppins font-semibold text-textClr mb-12 leading-tight"
-        >
-          Subscribe to get information, latest news and other interesting offers
-          about Jadoo
-        </h2>
-
-        <div
-          class="flex flex-col lg:flex-row justify-center items-stretch space-y-4 lg:space-y-0 lg:space-x-6 max-w-2xl mx-auto"
-        >
-          <div class="relative flex-1">
-            <div class="absolute left-6 top-1/2 transform -translate-y-1/2">
-              <svg
-                class="w-5 h-5 text-textColor"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-            </div>
-            <input
-              type="email"
-              placeholder="Your email"
-              class="w-full pl-14 pr-6 py-6 border border-textColor rounded-2xl text-textColor placeholder-textColor focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20 transition-all duration-200"
-            />
-          </div>
-          <button
-            class="bg-orange-gradient text-white px-8 lg:px-12 py-6 rounded-2xl font-opensans font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex-shrink-0"
-          >
-            Subscribe
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-20 px-6 lg:px-32 bg-white relative">
-      <!-- Decorative Background -->
-      <div
-        class="absolute right-8 lg:right-32 bottom-16 w-64 h-64 lg:w-96 lg:h-96 bg-purple-200 rounded-full blur-3xl opacity-20"
-      ></div>
-
-      <div class="max-w-7xl mx-auto">
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12 relative z-10"
-        >
-          <!-- Logo and Description -->
-          <div class="lg:col-span-1 space-y-6">
-            <h3 class="text-3xl lg:text-4xl font-poppins text-primary">
-              Jadoo.
-            </h3>
-            <p class="text-textClr text-sm leading-relaxed max-w-xs">
-              Book your trip in minute, get full Control for much longer.
-            </p>
-          </div>
-
-          <!-- Company -->
-          <div class="space-y-6">
-            <h4 class="text-xl font-poppins font-bold text-blackColor">
-              Company
-            </h4>
-            <ul class="space-y-4">
-              <li>
-                <a
-                  href="#"
-                  class="text-textClr hover:text-secondary transition-colors duration-200"
-                  >About</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-textClr hover:text-secondary transition-colors duration-200"
-                  >Careers</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-textClr hover:text-secondary transition-colors duration-200"
-                  >Mobile</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Contact -->
-          <div class="space-y-6">
-            <h4 class="text-xl font-poppins font-bold text-blackColor">
-              Contact
-            </h4>
-            <ul class="space-y-4">
-              <li>
-                <a
-                  href="#"
-                  class="text-textClr hover:text-secondary transition-colors duration-200"
-                  >Help/FAQ</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-textClr hover:text-secondary transition-colors duration-200"
-                  >Press</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-textClr hover:text-secondary transition-colors duration-200"
-                  >Affilates</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- More -->
-          <div class="space-y-6">
-            <h4 class="text-xl font-poppins font-bold text-blackColor">More</h4>
-            <ul class="space-y-4">
-              <li>
-                <a
-                  href="#"
-                  class="text-textClr hover:text-secondary transition-colors duration-200"
-                  >Airlinefees</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-textClr hover:text-secondary transition-colors duration-200"
-                  >Airline</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-textClr hover:text-secondary transition-colors duration-200"
-                  >Low fare tips</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Social Media and Apps -->
-          <div class="space-y-8">
-            <!-- Social Media Icons -->
-            <div class="flex justify-center lg:justify-start space-x-4">
-              <a
-                href="#"
-                class="w-10 h-10 bg-circle rounded-full flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-200 transform hover:scale-110"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 bg-circle rounded-full flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-200 transform hover:scale-110"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.042-3.441.219-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.357-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="#"
-                class="w-10 h-10 bg-circle rounded-full flex items-center justify-center hover:bg-secondary hover:text-white transition-all duration-200 transform hover:scale-110"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"
-                  />
-                </svg>
-              </a>
-            </div>
-
-            <!-- Discover Our App -->
-            <div class="text-center lg:text-left space-y-4">
-              <p class="text-textClr text-lg font-medium">Discover our app</p>
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/74d704dc64280dc109cfadf6b6b0ad225b1a27ad?width=428"
-                alt="Download our app"
-                class="w-32 h-20 object-contain mx-auto lg:mx-0"
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- Copyright -->
-        <div class="border-t border-borderColor mt-16 pt-8 text-center">
-          <p class="text-textClr text-sm">All rights reserved@jadoo.co</p>
-        </div>
-      </div>
-    </footer>
-  </body>
+            // Reveal on scroll using IntersectionObserver
+            const revealEls = document.querySelectorAll(".reveal");
+            if ("IntersectionObserver" in window) {
+                const io = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((e) => {
+                            if (e.isIntersecting) {
+                                e.target.classList.add("reveal-in");
+                                io.unobserve(e.target);
+                            }
+                        });
+                    },
+                    { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
+                );
+                revealEls.forEach((el) => io.observe(el));
+            } else {
+                // Fallback
+                revealEls.forEach((el) => el.classList.add("reveal-in"));
+            }
+        </script>
+    </body>
 </html>
