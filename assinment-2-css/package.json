@@ -1,0 +1,38 @@
+{
+  "name": "jadoo-travel-website",
+  "version": "1.0.0",
+  "description": "A modern, responsive travel booking website built with HTML and Tailwind CSS",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "travel",
+    "website",
+    "responsive",
+    "tailwind-css",
+    "html5",
+    "tourism",
+    "booking"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/jadoo-travel-website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/jadoo-travel-website/issues"
+  },
+  "homepage": "https://github.com/yourusername/jadoo-travel-website#readme"
+}
+
+
+

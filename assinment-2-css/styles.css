@@ -1,0 +1,202 @@
+/* Custom CSS for Jadoo Travel Website */
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6246E5;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4c35d1;
+}
+
+/* Additional animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.6s ease-out;
+}
+
+/* Enhanced hover effects */
+.service-card:hover .service-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.destination-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Custom focus styles for accessibility */
+button:focus,
+a:focus,
+input:focus,
+select:focus {
+  outline: 2px solid #6246E5;
+  outline-offset: 2px;
+}
+
+/* Loading animation for images */
+.image-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .text-textClr {
+    color: #000000 !important;
+  }
+  
+  .bg-white {
+    background-color: #ffffff !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .floating-animation {
+    animation: none;
+  }
+}
+
+/* Dark mode support (if needed in future) */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles can be added here */
+}
+
+/* Custom utility classes */
+.text-gradient {
+  background: linear-gradient(135deg, #FF946D, #FF7D68);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-custom {
+  background: linear-gradient(135deg, #6246E5, #8A79DF);
+}
+
+.shadow-custom {
+  box-shadow: 0 10px 25px -5px rgba(98, 70, 229, 0.1), 0 10px 10px -5px rgba(98, 70, 229, 0.04);
+}
+
+/* Mobile-specific enhancements */
+@media (max-width: 640px) {
+  .mobile-text-center {
+    text-align: center;
+  }
+  
+  .mobile-full-width {
+    width: 100%;
+  }
+  
+  .mobile-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Tablet-specific enhancements */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .tablet-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Large screen enhancements */
+@media (min-width: 1025px) {
+  .desktop-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .desktop-text-large {
+    font-size: 1.125rem;
+  }
+}
