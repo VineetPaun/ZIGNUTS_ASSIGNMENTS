@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fibonacci Series</title>
+</head>
+<body>
+  <h2>Fibonacci Series Generator</h2>
+  <input type="number" id="steps" placeholder="Enter number of steps">
+  <button onclick="printFibonacci()">Print</button>
+  <p id="result"></p>
+
+  <script>
+    function printFibonacci() {
+      let n = parseInt(document.getElementById("steps").value);
+      let a = 0, b = 1, series = [];
+      for (let i = 0; i < n; i++) {
+        series.push(a);
+        let temp = a + b;
+        a = b;
+        b = temp;
+      }
+      document.getElementById("result").innerText = series.join(", ");
+    }
+  </script>
+</body>
+</html>
